@@ -30,6 +30,8 @@
 
 ## About
 
+pyPhoneInfoga is a rebase from version 1.11 of the (phoneinfoga)[https://github.com/sundowndev/phoneinfoga], written by (sundowndev)[https://github.com/sundowndev]. The original developer chose to switch codebase from python to GoLang, but this repo will be an attempt to improve on the original python codebase, and add any additional features added to the GoLang version, but in keeping with python as the choice of language.
+
 PhoneInfoga is one of the most advanced tools to scan phone numbers using only free resources. The goal is to first gather standard information such as country, area, carrier and line type on any international phone numbers with a very good accuracy. Then search for footprints on search engines to try to find the VoIP provider or identify the owner.
 
 ## Features
@@ -48,7 +50,7 @@ PhoneInfoga is one of the most advanced tools to scan phone numbers using only f
 
 Additions in this repo are under GPLv3.
 
-This tool is licensed under the GNU General Public License v3.0.
+The original tool by sundowndev is licensed under the GNU General Public License v3.0.
 
 Some parts of this code comes from [Infoga](https://github.com/m4ll0k/infoga), another project licensed under GPLv3.0.
 
