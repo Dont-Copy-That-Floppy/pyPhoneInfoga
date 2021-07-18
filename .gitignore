@@ -1,0 +1,11 @@
+.idea
+.buildconfig
+__pycache__/
+.vscode/
+config.py
+geckodriver.log
+.coverage
+*.yml
+*.toml
+docker*
+Dockerfile
