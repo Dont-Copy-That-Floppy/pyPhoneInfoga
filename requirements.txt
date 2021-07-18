@@ -1,0 +1,7 @@
+phonenumbers
+colorama
+requests
+selenium
+beautifulsoup4
+html5lib
+config
