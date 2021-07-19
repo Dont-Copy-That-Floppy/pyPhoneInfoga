@@ -35,13 +35,12 @@ def scan(number):
     apiKey = hashlib.md5((number + requestSecret).encode("utf-8")).hexdigest()
 
     headers = {
-        "Host": "numverify.com",
-        "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:64.0) Gecko/20100101 Firefox/64.0",
+        # "Host": "numverify.com",
         "Accept": "application/json, text/javascript, */*; q=0.01",
         "Accept-Language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3",
         "Accept-Encoding": "gzip, deflate, br",
-        "Referer": "https://numverify.com/",
-        "X-Requested-With": "XMLHttpRequest",
+        # "Referer": "https://numverify.com/",
+        # "X-Requested-With": "XMLHttpRequest",
         "DNT": "1",
         "Connection": "keep-alive",
         "Pragma": "no-cache",
@@ -82,8 +81,10 @@ def scan(number):
         data["country_prefix"], data["local_format"]
     )
 
-    plus(("Number: ({}) {}").format(data["country_prefix"], data["local_format"]))
-    plus(("Country: {} ({})").format(data["country_name"], data["country_code"]))
+    plus(("Number: ({}) {}").format(
+        data["country_prefix"], data["local_format"]))
+    plus(("Country: {} ({})").format(
+        data["country_name"], data["country_code"]))
     plus(("Location: {}").format(data["location"]))
     plus(("Carrier: {}").format(data["carrier"]))
     plus(("Line type: {}").format(data["line_type"]))

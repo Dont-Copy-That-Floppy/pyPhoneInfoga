@@ -9,7 +9,7 @@
 import sys
 import signal
 # lib
-from lib.args import args,parser
+from lib.args import args, parser
 from lib.banner import banner, __version__
 from lib.output import *
 from lib.format import *
@@ -25,9 +25,9 @@ from pathlib import Path
 
 configFile = Path(sys.path[0] + "/config.py")
 
+
 def scanNumber(InputNumber):
     title("[!] ---- Fetching informations for {} ---- [!]".format(formatNumber(InputNumber)))
-
     number = localscan.scan(InputNumber)
 
     if not number:
@@ -38,19 +38,16 @@ def scanNumber(InputNumber):
     ovh.scan(number['local'], number['countryIsoCode'])
     recon.scan(number)
     osintScan(number)
-
     info("Scan finished.\n")
 
 
 def main():
     scanners = ['any', 'all', 'numverify', 'ovh', 'footprints']
-
     banner()
 
     # Ensure the usage of Python3
     if sys.version_info[0] < 3:
-        print(
-            "(!) Please run the tool using Python 3")
+        print("(!) Please run the tool using Python 3")
         sys.exit()
 
     # If any param is passed, execute help command
@@ -90,9 +87,7 @@ def main():
 
 def signal_handler(signal, frame):
     print('\n[-] You pressed Ctrl+C! Exiting.')
-
     closeBrowser()
-
     sys.exit()
 
 

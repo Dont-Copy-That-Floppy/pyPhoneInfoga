@@ -14,13 +14,8 @@ from lib.output import *
 from lib.request import send
 from config import *
 import sys
-
 from selenium import webdriver
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
-
-
-browser = None
-
 
 def getBrowser():
     if os.environ.get("webdriverRemote"):
@@ -31,7 +26,7 @@ def getBrowser():
 
     if browser_path == "":
         options = webdriver.ChromeOptions()
-        options.add_argument("headless")
+        #options.add_argument("headless")
         options.add_argument('--ignore-certificate-errors')
         options.add_argument("--test-type")
 
@@ -40,9 +35,9 @@ def getBrowser():
                    "download.default_directory": './', "download.extensions_to_open": "applications/pdf"}
         options.add_experimental_option("prefs", profile)
         if(sys.platform == 'win32'):
-            return webdriver.Chrome(chrome_options=options, executable_path="chromedriver.exe")
+            return webdriver.Chrome(chrome_options=options, executable_path="lib/chromedriver.exe")
         else:
-            return webdriver.Chrome(chrome_options=options, executable_path="./chromedriver")
+            return webdriver.Chrome(chrome_options=options, executable_path="lib/chromedriver")
     else:
         binary = FirefoxBinary(browser_path)
         return webdriver.Firefox(firefox_binary=binary)
@@ -54,15 +49,8 @@ def closeBrowser():
 
 
 def search(req, stop):
-    global browser
-
     if google_api_key and google_cx_id:
         return searchApi(req, stop)
-
-    try:
-        browser = getBrowser()
-    except Exception as e:
-        error(e)
 
     try:
         REQ = urlencode({"q": req, "num": stop, "hl": "en"})
@@ -106,7 +94,7 @@ def search(req, stop):
         return links
     except Exception as e:
         error(
-            "Request failed. Please retry or open an issue on https://github.com/sundowndev/PhoneInfoga."
+            "Request failed. Please retry or open an issue on https://github.com/Dont-Copy-That-Floppy/pyPhoneInfoga."
         )
         print(e)
         return []
@@ -139,3 +127,5 @@ def searchApi(req, stop):
             links.append(result["link"])
 
     return links
+
+browser = getBrowser()
