@@ -17,7 +17,7 @@ import sys
 from selenium import webdriver
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
-def getBrowser():
+def getBrowser(browser_path=""):
     if os.environ.get("webdriverRemote"):
         return webdriver.Remote(
             os.environ.get("webdriverRemote"),
@@ -35,9 +35,9 @@ def getBrowser():
                    "download.default_directory": './', "download.extensions_to_open": "applications/pdf"}
         options.add_experimental_option("prefs", profile)
         if(sys.platform == 'win32'):
-            return webdriver.Chrome(chrome_options=options, executable_path="lib/chromedriver.exe")
+            return webdriver.Chrome(chrome_options=options, executable_path="chromedriver.exe")
         else:
-            return webdriver.Chrome(chrome_options=options, executable_path="lib/chromedriver")
+            return webdriver.Chrome(chrome_options=options, executable_path="chromedriver")
     else:
         binary = FirefoxBinary(browser_path)
         return webdriver.Firefox(firefox_binary=binary)
