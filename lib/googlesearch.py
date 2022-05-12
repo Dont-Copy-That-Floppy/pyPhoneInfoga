@@ -17,6 +17,7 @@ import sys
 from selenium import webdriver
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
+
 def getBrowser(browser_path=""):
     if os.environ.get("webdriverRemote"):
         return webdriver.Remote(
@@ -26,7 +27,7 @@ def getBrowser(browser_path=""):
 
     if browser_path == "":
         options = webdriver.ChromeOptions()
-        #options.add_argument("headless")
+        # options.add_argument("headless")
         options.add_argument('--ignore-certificate-errors')
         options.add_argument("--test-type")
 
@@ -35,9 +36,9 @@ def getBrowser(browser_path=""):
                    "download.default_directory": './', "download.extensions_to_open": "applications/pdf"}
         options.add_experimental_option("prefs", profile)
         if(sys.platform == 'win32'):
-            return webdriver.Chrome(chrome_options=options, executable_path="chromedriver.exe")
+            return webdriver.Chrome(chrome_options=options, executable_path="lib/chromedriver.exe")
         else:
-            return webdriver.Chrome(chrome_options=options, executable_path="chromedriver")
+            return webdriver.Chrome(chrome_options=options, executable_path="lib/chromedriver")
     else:
         binary = FirefoxBinary(browser_path)
         return webdriver.Firefox(firefox_binary=binary)
@@ -127,5 +128,6 @@ def searchApi(req, stop):
             links.append(result["link"])
 
     return links
+
 
 browser = getBrowser()
